@@ -1,22 +1,22 @@
 # AI Exposure vs. Projected Employment Change (U.S., 2025–2035)
 
-A Power BI analysis of all 831 detailed U.S. occupations, combining the Bureau of Labor Statistics' first-ever **AI exposure classification** (published August 27, 2026) with its **2025–35 employment projections**.
+On August 27, 2026, BLS published its first AI exposure classification for U.S. occupations, assigning each one of four relative exposure levels. This Power BI report joins that classification to the 2025–35 employment projections released alongside it, covering all 831 detailed occupations.
 
-**The question:** Where does high AI exposure line up with projected job decline, and where does it line up with projected growth?
+The question: where does high AI exposure coincide with projected employment decline, and where doesn't it?
+
+Built in Power BI Desktop — Power Query for the transformations, a two-table model, nine DAX measures, three report pages.
 
 ---
 
 ## Key findings
 
-**1. Exposure is widespread. Projected decline is concentrated.**
+**1. Exposure is widespread; projected decline is not.**
 
-56% of U.S. employment (roughly 95.4 million workers) sits in occupations BLS rates **High** or **Very high** for relative AI exposure. But only **34.4 million** of those workers are in occupations actually projected to shrink by 2035 — about a third of the exposed workforce. The other two-thirds are in occupations projected to hold steady or grow.
-
-This is the opposite of the common framing. Exposure is not a decline forecast, and the data shows the two diverge sharply.
+56% of U.S. employment (95.4 million workers) is in occupations BLS rates High or Very high for relative AI exposure. Of those, 34.4 million are in occupations projected to shrink by 2035 — roughly a third. The remaining two-thirds are in occupations projected to hold steady or grow.
 
 **2. Highly exposed occupations are larger than average.**
 
-The four exposure categories contain almost identical numbers of occupations (213 / 206 / 206 / 206), but very different employment:
+The four categories hold near-identical counts of occupations but very different employment:
 
 | Exposure | Occupations | Employment 2025 | Share | Avg. size |
 |---|---|---|---|---|
@@ -25,11 +25,11 @@ The four exposure categories contain almost identical numbers of occupations (21
 | High | 206 | 42,142,000 | 24.8% | 204,600 |
 | Very high | 206 | 53,209,200 | 31.2% | 258,300 |
 
-A Very high exposure occupation employs, on average, 1.8× as many people as a Low exposure one.
+A Very high exposure occupation employs on average 1.8× as many people as a Low exposure one, so employment share and occupation count diverge.
 
-**3. The declining-and-exposed cluster is office and administrative work.**
+**3. Declining high-exposure occupations concentrate in office and administrative work.**
 
-Among the largest occupations, the pattern is stark:
+Among the largest occupations rated High or Very high:
 
 | Occupation | Exposure | Employment | Projected change |
 |---|---|---|---|
@@ -40,64 +40,62 @@ Among the largest occupations, the pattern is stark:
 | Secretaries and administrative assistants | Very high | 1,889,800 | −6.0% |
 | Bookkeeping, accounting, and auditing clerks | Very high | 1,532,400 | −5.6% |
 
-Meanwhile the fastest-growing large occupations are physical and in-person, and rate Low or Moderate:
+The largest growing occupations are mostly in-person work rated Low or Moderate:
 
 | Occupation | Exposure | Employment | Projected change |
 |---|---|---|---|
 | Home health and personal care aides | Moderate | 4,677,100 | +18.1% |
 | Fast food and counter workers | Moderate | 3,855,900 | +5.8% |
-| Construction laborers | Low | 1,489,300 | +7.3% |
 | Nursing assistants | Low | 1,505,900 | +2.6% |
+| Construction laborers | Low | 1,489,300 | +7.3% |
 
-**4. High exposure does not mean decline.**
+**4. High exposure does not imply decline.**
 
-The clearest counterexamples sit at the top of the exposure scale and the top of the growth scale simultaneously:
+Several occupations rank at the top of both the exposure scale and the growth scale:
 
-- **Software developers** — Very high exposure, 1,717,800 workers, **+10.2%**
-- **Data scientists** — Very high exposure, 275,600 workers, **+34.6%**
-- **Nurse practitioners** — High exposure, 336,300 workers, **+41.0%**
+- Software developers — Very high exposure, 1,717,800 workers, +10.2%
+- Data scientists — Very high exposure, 275,600 workers, +34.6%
+- Nurse practitioners — High exposure, 336,300 workers, +41.0%
 
-**5. Replacement demand dwarfs net growth.**
+**5. Annual openings exceed net growth by a wide margin.**
 
-Net projected growth across the decade is 5.9 million jobs, but average **annual** openings are 17.5 million. Most hiring replaces workers who leave an occupation rather than filling newly created positions. A declining occupation can still generate substantial annual openings.
+Net projected growth over the decade is 5.9 million jobs; average annual openings are 17.5 million. Most hiring replaces workers leaving an occupation rather than filling new positions, so a declining occupation can still generate substantial openings.
 
 ---
 
-## Data sources
-
-All sources are works of the U.S. federal government and in the public domain. Raw downloads are included in `/data`.
+## Data source
 
 | File | Source | Vintage |
 |---|---|---|
 | `ai-exposure-categories.xlsx` | [BLS AI exposure categories](https://www.bls.gov/emp/publications/ai-exposure-categories.htm) | Published Aug 27, 2026 |
 
-The single BLS file carries the exposure category, 2025 and 2035 employment, numeric and percent change, annual openings, median wage, percent self-employed, typical entry education, work experience, and on-the-job training — all keyed to 6-digit 2018 SOC codes.
+A U.S. federal government work, in the public domain. The file carries exposure category, 2025 and 2035 employment, numeric and percent change, annual openings, median wage, percent self-employed, typical entry education, work experience, and on-the-job training — all keyed to 6-digit 2018 SOC codes.
 
 ### How BLS built the exposure measure
 
-BLS combined **five external sources** — three theoretical exposure measures and two based on observed AI usage — into a four-category classification covering all 831 occupations for which projections are produced:
+BLS combined five external sources — three theoretical exposure measures and two based on observed AI usage — into a four-category classification covering all 831 occupations for which projections are produced:
 
 - Felten, Raj & Seamans (AI capability / occupational ability overlap, 2020)
 - Eloundou, Manning, Mishkin & Rock (LLM task-time reduction, 2023)
 - Eisfeldt, Schubert, Taska & Zhang (LLM task exposure, 2023)
-- Massenkoff & McCrory / Anthropic (observed Claude usage mapped to O*NET tasks, 2025)
+- Massenkoff & McCrory / Anthropic (observed Claude usage mapped to O\*NET tasks, 2025)
 - Tomlinson, Jaffe, Wang, Counts & Suri / Microsoft (observed Copilot usage mapped to work activities, 2024–25)
 
-Each source was converted to a percentile rank, then reduced to two dimensions (median theoretical rank, median observed rank) and clustered into Low / Moderate / High / Very high.
+Each source was converted to a percentile rank, reduced to two dimensions (median theoretical rank, median observed rank), and clustered into Low / Moderate / High / Very high.
 
 ---
 
 ## Data preparation
 
-Done entirely in Power Query so every transformation is auditable. Steps, in order:
+All transformations in Power Query, so the steps are auditable in the file.
 
-1. **Disabled Power BI's automatic type detection** (File → Options → Data Load). This matters: auto-typing inserts a `Changed Type` step immediately after header promotion, which converts the wage column to a number *before* suppression markers are removed, turning them into unrecoverable errors.
+1. **Disabled automatic type detection** (File → Options → Data Load, both GLOBAL and CURRENT FILE). Auto-typing inserts a `Changed Type` step immediately after header promotion, converting the wage column to a number before suppression markers are removed and turning them into unrecoverable errors.
 2. **Removed the title row**, then promoted headers.
-3. **Filtered out footnote rows** by removing nulls in the SOC code column rather than using Remove Bottom Rows, so the query doesn't silently delete real data if BLS adds a note in a future release. Row count: 836 → **831**.
-4. **Verified no aggregate rows.** BLS files often mix major-group totals (`43-0000`) with detail rows (`43-4051`), which double-counts every total. Landing at exactly 831 confirmed this file contains detail rows only.
-5. **Replaced em-dash suppression markers.** BLS denotes unavailable values with `—`. Replaced with null using *Match entire cell contents*, before any type conversion.
-6. **Converted employment from thousands to units.** BLS publishes employment in thousands (291.6 = 291,600). Multiplied `Emp2025`, `Emp2035`, `EmpChange`, and `AnnualOpenings` by 1,000. Percent and wage columns excluded.
-7. **Added `ExposureSortOrder`** (Low=1 … Very high=4) via conditional column, then set `ExposureCategory` to Sort by Column. Without this, every visual sorts the categories alphabetically as High, Low, Moderate, Very high.
+3. **Filtered out footnote rows** by removing nulls in the SOC code column rather than using Remove Bottom Rows, so the query doesn't silently delete real data if BLS adds a note in a future release. Row count: 836 → 831.
+4. **Checked for aggregate rows.** BLS files often mix major-group totals (`43-0000`) with detail rows (`43-4051`), which double-counts every total. Landing at exactly 831 confirmed this file holds detail rows only.
+5. **Replaced em-dash suppression markers.** BLS denotes unavailable values with `—`; replaced with null using *Match entire cell contents*, before any type conversion.
+6. **Converted employment from thousands to units.** BLS publishes employment in thousands (291.6 = 291,600). Multiplied `Emp2025`, `Emp2035`, `EmpChange`, and `AnnualOpenings` by 1,000; percent and wage columns excluded.
+7. **Added `ExposureSortOrder`** (Low=1 … Very high=4) via conditional column, then set `ExposureCategory` to Sort by Column. Without it, visuals sort the categories alphabetically as High, Low, Moderate, Very high.
 8. **Extracted `MajorGroupCode`** from the first two characters of the SOC code, kept as text so it joins correctly.
 9. **Set all types explicitly**, as the final step.
 
@@ -110,16 +108,14 @@ Done entirely in Power Query so every transformation is auditable. Steps, in ord
 | Exposure categories | 4 | 4 |
 | Major groups | 22 (55 Military Specific excluded by BLS) | 22 |
 | Total employment 2025 | ~170M | 170,267,200 |
-| Net projected change | BLS headline: 5.9M | 5,900,000 |
+| Net projected change | BLS headline 5.9M | 5,917,300 |
 | Errors in any column | 0% | 0% |
 
-`MedianWage` contains **[FILL IN]** nulls, the occupations for which BLS does not publish a wage. These rows are **retained** — filtering them out would understate every employment total. The weighted-wage measure excludes them inside the measure instead, keeping numerator and denominator consistent.
+`MedianWage` is 99% complete: 825 of 831 occupations carry a published wage and 6 are null. Those rows are kept in the model — dropping them would remove their employment from every total to fix a gap in one column. The weighted wage measure excludes them inside the measure instead, keeping its numerator and denominator consistent while leaving employment counts whole.
 
 ### External validation
 
-Model output was checked against BLS's own published aggregates in *The Economics Daily*, ["Total employment projected to grow 3.5 percent between 2025 and 2035"](https://www.bls.gov/opub/ted/2026/total-employment-projected-to-grow-3-5-percent-between-2025-and-2035.htm) (September 21, 2026).
-
-All 22 major occupational groups reproduce the published figures within rounding:
+Model output was checked against BLS's published aggregates in *The Economics Daily*, ["Total employment projected to grow 3.5 percent between 2025 and 2035"](https://www.bls.gov/opub/ted/2026/total-employment-projected-to-grow-3-5-percent-between-2025-and-2035.htm) (September 21, 2026). All 22 major occupational groups reproduce the published figures within rounding; a sample:
 
 | Major group | BLS published | This model |
 |---|---|---|
@@ -130,18 +126,16 @@ All 22 major occupational groups reproduce the published figures within rounding
 | Computer and mathematical | 403,100 / +7.3% | 402,700 / +7.3% |
 | Construction and extraction | 385,700 / +5.1% | 385,500 / +5.1% |
 | Life, physical, and social science | 122,900 / +7.5% | 123,300 / +7.5% |
-| **Office and administrative support** | **−752,200 / −4.0%** | **−752,200 / −4.0%** |
-| **Economy-wide total** | **5.9M / +3.5%** | **5,917,300 / +3.5%** |
+| Office and administrative support | −752,200 / −4.0% | −752,200 / −4.0% |
+| Economy-wide total | 5.9M / +3.5% | 5,917,300 / +3.5% |
 
-Residual differences of a few hundred jobs come from BLS publishing employment in thousands to one decimal place; summing detail rows rounds slightly differently than the published group aggregate.
+Residual differences of a few hundred jobs come from BLS publishing employment in thousands to one decimal; summing detail rows rounds slightly differently than the published group aggregate.
 
-Office and administrative support is both the largest projected decline of any major group and the group most heavily weighted toward Very high AI exposure — the clearest point of contact between the exposure data and the projections.
+Office and administrative support is both the largest projected decline of any major group and the group most heavily weighted toward Very high exposure.
 
 ---
 
 ## Data model
-
-A small star schema:
 
 ```
 MajorGroups (22 rows)          Projections (831 rows)
@@ -188,10 +182,10 @@ DIVIDE(
 )
 ```
 
-One measure worth explaining:
+One measure needs explaining:
 
 ```dax
-Employment-Weighted Median Wage =
+Employment-Weighted Average Wage =
 VAR WagedRows =
     FILTER(Projections, NOT ISBLANK(Projections[MedianWage]))
 RETURN
@@ -201,7 +195,9 @@ RETURN
     )
 ```
 
-A plain `AVERAGE(MedianWage)` would weight a 3,000-person occupation the same as a 3-million-person one. Filtering inside the measure rather than in Power Query means the wage-suppressed occupations are excluded from *this* calculation without disappearing from employment totals.
+A plain `AVERAGE(MedianWage)` would weight a 3,000-person occupation the same as a 3-million-person one. Filtering inside the measure rather than in Power Query excludes the six wage-suppressed occupations from this calculation without removing them from employment totals.
+
+Note on naming: this is an employment-weighted mean of occupation-level median wages, not a median of the underlying wage distribution. Computing a true population median would require the microdata behind the published medians, which isn't in this file.
 
 ---
 
@@ -225,36 +221,36 @@ Scatter of projected percent change against median wage, bubble-sized by employm
 
 All 831 occupations with exposure, growth, openings, wage, and entry education. Slicers on exposure, occupational group, and education; search on occupation name. `PctChange` carries a diverging color scale with white pinned at 0%, so decline reads red and growth reads green.
 
-Exposure uses a single-hue sequential ramp (light → dark for Low → Very high) on every page, because the categories are ordered.
+Exposure uses a single-hue sequential ramp (light → dark for Low → Very high) on every page, since the categories are ordered.
 
 ---
 
 ## Limitations
 
-These come from the BLS documentation and apply directly to anything concluded from this dashboard.
+From the BLS documentation, and applying directly to anything concluded here.
 
-**Exposure is not a forecast.** BLS states explicitly that an exposure category is not a forecast of employment growth or decline, not a wage forecast, not an estimate of the probability of AI adoption, not a worker replacement estimate, and not a productivity forecast.
+**Exposure is not a forecast.** BLS states that an exposure category is not a forecast of employment growth or decline, not a wage forecast, not an estimate of the probability of AI adoption, not a worker replacement estimate, and not a productivity forecast.
 
-**Exposure is relative, not absolute.** The categories rank occupations against each other within this method. "Low" does not mean unaffected, and "High" does not imply any absolute threshold.
+**Exposure is relative.** The categories rank occupations against each other within this method. "Low" does not mean unaffected; "High" does not imply any absolute threshold.
 
 **Automation and augmentation are not distinguished.** The classification does not separate AI that replaces work from AI that assists a worker doing it.
 
 **The underlying AI capabilities are dated.** The three theoretical sources conceptualize AI capabilities as those available no later than mid-2023. The two observed sources may skew toward early adopters of specific models. Most sources focus on language models and exclude image and video generation.
 
-**Occupations are treated as bundles of independent tasks.** All five sources score tasks, abilities, or work activities independently and do not account for bottlenecks, complementarities, or other non-separable features of a job.
+**Occupations are treated as bundles of independent tasks.** All five sources score tasks, abilities, or work activities independently, without accounting for bottlenecks, complementarities, or other non-separable features of a job.
 
 **Some values are imputed.** Of 4,155 possible occupation-source combinations (831 × 5), 3,944 were observed and 211 imputed, affecting 75 occupations.
 
-**Projections reflect many factors, not just AI.** The employment projections incorporate demographics, demand, industry structure, and technology together. The percent-change figures here cannot be attributed to AI alone, and BLS cautions that its projections framework cannot isolate the effect of a single technology.
+**Projections reflect many factors, not just AI.** The employment projections incorporate demographics, demand, industry structure, and technology together. The percent-change figures cannot be attributed to AI alone, and BLS cautions that its framework cannot isolate the effect of a single technology.
 
-**Analyst's note on the wage axis.** Page 3 shows an unweighted mean wage across occupations. The employment-weighted figure is the more meaningful one and is available as a separate measure.
+**Wage figures on page 3 are unweighted.** The occupation table shows an unweighted mean across occupations. `Employment-Weighted Average Wage` is the more meaningful figure and is available as a separate measure.
 
 ---
 
 ## Reproducing this
 
-1. Download the [AI exposure categories file](https://www.bls.gov/emp/ind-occ-matrix/ai-exposure-categories.xlsx) (or use `ai-exposure-categories.xlsx` in this repo)
-2. In Power BI Desktop: File → Options → Data Load → **untick** "Automatically detect column types and headers for unstructured sources" under both GLOBAL and CURRENT FILE
+1. Download the [AI exposure categories file](https://www.bls.gov/emp/ind-occ-matrix/ai-exposure-categories.xlsx), or use `ai-exposure-categories.xlsx` in this repo
+2. In Power BI Desktop: File → Options → Data Load → untick "Automatically detect column types and headers for unstructured sources" under both GLOBAL and CURRENT FILE
 3. Open `ai-exposure-dashboard.pbix` and point the source at your local file path
 4. Refresh
 
